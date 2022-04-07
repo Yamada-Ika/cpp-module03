@@ -1,10 +1,11 @@
 CC		:= c++
 CFLAGS	:= -Wall -Wextra -Werror
-COPTS	:= -std=c++98 -pedantic
+COPTS	:= -std=c++98 -pedantic-errors
 INCLUDE	:= -I src
 
 NAME	:= a.out
-SRCS	:= ClapTrap.cpp FragTrap.cpp ScavTrap.cpp main.cpp
+SRCS	:= ClapTrap.cpp    FragTrap.cpp    main.cpp\
+DiamondTrap.cpp ScavTrap.cpp
 OBJS	:= $(SRCS:%.cpp=%.o)
 SRCS	:= $(addprefix src/, $(SRCS))
 OBJS	:= $(addprefix obj/, $(OBJS))
