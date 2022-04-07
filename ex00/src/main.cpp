@@ -9,7 +9,14 @@ void  NormalTest(void) {
   ClapTrap a("hoge");
 
   a.attack("fuga");
-  a.takeDamage(10);
+  a.takeDamage(5);
+  a.beRepaired(10);
+  for (int i = 0; i < 10; i++) {
+     a.beRepaired(10);
+  }
+  a.takeDamage(1000);
+  a.attack("hoge");
+  a.takeDamage(0);
   a.beRepaired(10);
 }
 
@@ -24,7 +31,6 @@ void  CanonicalTest(void) {
 }
 
 int main( void ) {
-
   NormalTest();
   CanonicalTest();
   return 0;

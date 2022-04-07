@@ -10,6 +10,10 @@ class ClapTrap {
     unsigned int Energy_points_;
     unsigned int Attack_damage_;
 
+  protected:
+    bool isDead(void);
+    bool isEmpty(void);
+
  public:
     ClapTrap(void);
     ClapTrap(std::string name);
