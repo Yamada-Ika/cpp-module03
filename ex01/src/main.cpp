@@ -10,8 +10,7 @@ void  NormalTest(void) {
   ScavTrap a("hoge");
 
   a.attack("fuga");
-  a.takeDamage(10);
-  a.beRepaired(10);
+  a.guardGate();
 }
 
 void  CanonicalTest(void) {

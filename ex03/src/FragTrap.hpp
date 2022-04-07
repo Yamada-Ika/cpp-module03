@@ -6,16 +6,19 @@
 
 class FragTrap : public virtual ClapTrap {
   protected:
-    const int kDefaultHitpoints = 100;
-    const int kDefaultEnergy_points = 100;
-    const int kDefaultAttack_damage = 30;
+    const int kDefaultHitpoints;
+    const int kDefaultEnergy_points;
+    const int kDefaultAttack_damage;
 
  public:
     FragTrap(void);
     FragTrap(std::string name);
     FragTrap(const FragTrap& other);
-    ~FragTrap(void);
+    virtual ~FragTrap(void);
     FragTrap& operator=(const FragTrap& other);
+    virtual void attack(std::string const &target);
+    virtual void takeDamage(unsigned int amount);
+    virtual void beRepaired(unsigned int amount);
     void highFivesGuys(void);
 };
 

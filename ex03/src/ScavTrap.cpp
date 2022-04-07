@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-ScavTrap::ScavTrap(void) {
+ScavTrap::ScavTrap(void) : kDefaultHitpoints(100), kDefaultEnergy_points(50), kDefaultAttack_damage(20) {
   std::cout << "ScavTrap default constructor called" << std::endl;
   Name_ = "";
   Hitpoints_ = kDefaultHitpoints;
@@ -10,7 +10,7 @@ ScavTrap::ScavTrap(void) {
   Attack_damage_ = kDefaultAttack_damage;
 }
 
-ScavTrap::ScavTrap(std::string name) {
+ScavTrap::ScavTrap(std::string name) : kDefaultHitpoints(100), kDefaultEnergy_points(50), kDefaultAttack_damage(20) {
   std::cout << "ScavTrap default constructor called" << std::endl;
   Name_ = name;
   Hitpoints_ = kDefaultHitpoints;
@@ -18,7 +18,7 @@ ScavTrap::ScavTrap(std::string name) {
   Attack_damage_ = kDefaultAttack_damage;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) {
+ScavTrap::ScavTrap(const ScavTrap& other) : kDefaultHitpoints(100), kDefaultEnergy_points(50), kDefaultAttack_damage(20) {
   std::cout << "ScavTrap copy constructor called" << std::endl;
   *this = other;
 }
@@ -39,8 +39,36 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 }
 
 void ScavTrap::attack(std::string const &target) {
+  if (isDead()) {
+    std::cout << "ScavTrap " + this->Name_ + " cannot do anything!" << std::endl;
+    return;
+  }
   std::cout << "ScavTrap " + this->Name_ + " attack " + target + ", causing ";
   std::cout << this->Attack_damage_ << " points of damage!" << std::endl;
+}
+
+void ScavTrap::takeDamage(unsigned int amount) {
+  unsigned int prev_Hitpoints_;
+
+  prev_Hitpoints_ = Hitpoints_;
+  Hitpoints_ -= amount;
+  if (Hitpoints_ > prev_Hitpoints_)
+    Hitpoints_ = 0;
+  std::cout << "ScavTrap " + this->Name_ + " take " << amount << " points of damage!" << std::endl;
+}
+
+void ScavTrap::beRepaired(unsigned int amount) {
+  unsigned int prev_Hitpoints_;
+
+  if (isEmpty() || isDead()) {
+    std::cout << "ScavTrap " + this->Name_ + " cannot do anything!" << std::endl;
+    return;
+  }
+  prev_Hitpoints_ = Hitpoints_;
+  Hitpoints_ += amount;
+  if (Hitpoints_ < prev_Hitpoints_)
+    Hitpoints_ = UINT_MAX;
+  std::cout << "ScavTrap " + this->Name_ + " repaired " << amount << " hitpoints!" << std::endl;
 }
 
 void ScavTrap::guardGate(void) {

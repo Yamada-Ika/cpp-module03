@@ -1,22 +1,24 @@
 #ifndef DIAMONDTRAP_HPP
 # define DIAMONDTRAP_HPP
 
-# include "ClapTrap.hpp"
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 # include <string>
 
-// TODO
-// Name (Parameter of constructor)
-// • Claptrap::Name (Parameter of constructor + "_clap_name")
-// • attack (Scavtrap)
-
 class DiamondTrap : public FragTrap, public ScavTrap {
+ private:
+    std::string name_;
+
  public:
     DiamondTrap(void);
     DiamondTrap(std::string name);
     DiamondTrap(const DiamondTrap& other);
     ~DiamondTrap(void);
     DiamondTrap& operator=(const DiamondTrap& other);
-    void attack(std::string const &target);
+    virtual void attack(std::string const &target);
+    virtual void takeDamage(unsigned int amount);
+    virtual void beRepaired(unsigned int amount);
+    void whoAmI(void);
 };
 
 #endif

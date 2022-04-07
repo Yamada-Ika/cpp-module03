@@ -1,30 +1,28 @@
 #include <iostream>
 
-#include <ClapTrap.hpp>
-#include <ScavTrap.hpp>
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 #define HEADER() std::cout << "\033[32mSTART : " << __func__ << "\033[0m" << std::endl
 
 void  NormalTest(void) {
   HEADER();
-  FragTrap a("hoge");
+  DiamondTrap a("hoge");
 
   a.attack("fuga");
-  a.takeDamage(10);
-  a.beRepaired(10);
-  a.highFivesGuys();
+  // a.takeDamage(10);
+  // a.beRepaired(10);
+  // a.highFivesGuys();
 }
 
-void  CanonicalTest(void) {
-  HEADER();
+// void  CanonicalTest(void) {
+//   HEADER();
 
-  FragTrap a("hoge");
-  FragTrap b(a);
-  FragTrap c;
-  FragTrap d("fuga");
-  c = b;
-}
+//   DiamondTrap a("hoge");
+//   DiamondTrap b(a);
+//   DiamondTrap c;
+//   DiamondTrap d("fuga");
+//   c = b;
+// }
 
 int main( void ) {
   NormalTest();

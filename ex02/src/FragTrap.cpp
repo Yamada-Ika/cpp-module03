@@ -38,6 +38,39 @@ FragTrap& FragTrap::operator=(const FragTrap& other) {
   return *this;
 }
 
+void FragTrap::attack(std::string const &target) {
+  if (isDead()) {
+    std::cout << "FragTrap " + this->Name_ + " cannot do anything!" << std::endl;
+    return;
+  }
+  std::cout << "FragTrap " + this->Name_ + " attack " + target + ", causing ";
+  std::cout << this->Attack_damage_ << " points of damage!" << std::endl;
+}
+
+void FragTrap::takeDamage(unsigned int amount) {
+  unsigned int prev_Hitpoints_;
+
+  prev_Hitpoints_ = Hitpoints_;
+  Hitpoints_ -= amount;
+  if (Hitpoints_ > prev_Hitpoints_)
+    Hitpoints_ = 0;
+  std::cout << "FragTrap " + this->Name_ + " take " << amount << " points of damage!" << std::endl;
+}
+
+void FragTrap::beRepaired(unsigned int amount) {
+  unsigned int prev_Hitpoints_;
+
+  if (isEmpty() || isDead()) {
+    std::cout << "FragTrap " + this->Name_ + " cannot do anything!" << std::endl;
+    return;
+  }
+  prev_Hitpoints_ = Hitpoints_;
+  Hitpoints_ += amount;
+  if (Hitpoints_ < prev_Hitpoints_)
+    Hitpoints_ = UINT_MAX;
+  std::cout << "FragTrap " + this->Name_ + " repaired " << amount << " hitpoints!" << std::endl;
+}
+
 void FragTrap::highFivesGuys(void) {
   std::cout << "FragTrap request a positive high fives" << std::endl;
 }

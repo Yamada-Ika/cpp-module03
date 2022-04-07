@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-FragTrap::FragTrap(void) {
+FragTrap::FragTrap(void) : kDefaultHitpoints(100), kDefaultEnergy_points(100), kDefaultAttack_damage(30) {
   std::cout << "FragTrap default constructor called" << std::endl;
   Name_ = "";
   Hitpoints_ = kDefaultHitpoints;
@@ -10,7 +10,7 @@ FragTrap::FragTrap(void) {
   Attack_damage_ = kDefaultAttack_damage;
 }
 
-FragTrap::FragTrap(std::string name) {
+FragTrap::FragTrap(std::string name) : kDefaultHitpoints(100), kDefaultEnergy_points(100), kDefaultAttack_damage(30) {
   std::cout << "FragTrap default constructor called" << std::endl;
   Name_ = name;
   Hitpoints_ = kDefaultHitpoints;
@@ -18,7 +18,7 @@ FragTrap::FragTrap(std::string name) {
   Attack_damage_ = kDefaultAttack_damage;
 }
 
-FragTrap::FragTrap(const FragTrap& other) {
+FragTrap::FragTrap(const FragTrap& other) : kDefaultHitpoints(100), kDefaultEnergy_points(100), kDefaultAttack_damage(30) {
   std::cout << "FragTrap copy constructor called" << std::endl;
   *this = other;
 }
@@ -36,6 +36,39 @@ FragTrap& FragTrap::operator=(const FragTrap& other) {
     this->Attack_damage_ = other.Attack_damage_;
   }
   return *this;
+}
+
+void FragTrap::attack(std::string const &target) {
+  if (isDead()) {
+    std::cout << "FragTrap " + this->Name_ + " cannot do anything!" << std::endl;
+    return;
+  }
+  std::cout << "FragTrap " + this->Name_ + " attack " + target + ", causing ";
+  std::cout << this->Attack_damage_ << " points of damage!" << std::endl;
+}
+
+void FragTrap::takeDamage(unsigned int amount) {
+  unsigned int prev_Hitpoints_;
+
+  prev_Hitpoints_ = Hitpoints_;
+  Hitpoints_ -= amount;
+  if (Hitpoints_ > prev_Hitpoints_)
+    Hitpoints_ = 0;
+  std::cout << "FragTrap " + this->Name_ + " take " << amount << " points of damage!" << std::endl;
+}
+
+void FragTrap::beRepaired(unsigned int amount) {
+  unsigned int prev_Hitpoints_;
+
+  if (isEmpty() || isDead()) {
+    std::cout << "FragTrap " + this->Name_ + " cannot do anything!" << std::endl;
+    return;
+  }
+  prev_Hitpoints_ = Hitpoints_;
+  Hitpoints_ += amount;
+  if (Hitpoints_ < prev_Hitpoints_)
+    Hitpoints_ = UINT_MAX;
+  std::cout << "FragTrap " + this->Name_ + " repaired " << amount << " hitpoints!" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void) {
