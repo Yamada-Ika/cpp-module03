@@ -1,7 +1,7 @@
-CC		:= c++
-CXXFLAGS	:= -Wall -Wextra -Werror
-COPTS	:= -std=c++98 -pedantic-errors
-INCLUDE	:= -I src
+CC			:= c++
+CXXFLAGS	:= -Wall -Wextra -Werror -Wshadow -Wno-shadow
+COPTS		:= -std=c++98 -pedantic-errors
+INCLUDE		:= -I src
 
 NAME	:= a.out
 SRCS	:= ClapTrap.cpp    FragTrap.cpp    main.cpp\
@@ -26,4 +26,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: all
+	./a.out
+
+.PHONY: all clean fcleanfe

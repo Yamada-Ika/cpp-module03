@@ -1,33 +1,45 @@
 #include <iostream>
 
-#include <ClapTrap.hpp>
-#include <ScavTrap.hpp>
-#include "FragTrap.hpp"
+#include <FragTrap.hpp>
 
 #define HEADER() std::cout << "\033[32mSTART : " << __func__ << "\033[0m" << std::endl
 
-void  NormalTest(void) {
-  HEADER();
-  FragTrap a("hoge");
+void CanonicalTest(void) {
+    HEADER();
 
-  a.attack("fuga");
-  a.takeDamage(10);
-  a.beRepaired(10);
-  a.highFivesGuys();
+    FragTrap a("hoge");
+    FragTrap b(a);
+    FragTrap c;
+    FragTrap d("fuga");
+    c = b;
 }
 
-void  CanonicalTest(void) {
-  HEADER();
+void ConstructorAndDestructorTest(void) {
+    HEADER();
 
-  FragTrap a("hoge");
-  FragTrap b(a);
-  FragTrap c;
-  FragTrap d("fuga");
-  c = b;
+    FragTrap s("hoge");
 }
 
-int main( void ) {
-  NormalTest();
-  // CanonicalTest();
-  return 0;
+void AttackAndBeRepairedAndTakeDamageTest(void) {
+    HEADER();
+
+    FragTrap s("hoge");
+    s.attack("fuga");
+    s.beRepaired(100);
+    s.takeDamage(100);
+}
+
+void GuardGateTest(void) {
+    HEADER();
+
+    FragTrap s("hoge");
+    s.highFivesGuys();
+}
+
+int main(void) {
+    CanonicalTest();
+    ConstructorAndDestructorTest();
+    AttackAndBeRepairedAndTakeDamageTest();
+    GuardGateTest();
+    return 0;
 }

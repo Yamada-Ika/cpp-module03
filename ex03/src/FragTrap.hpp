@@ -4,21 +4,18 @@
 # include "ClapTrap.hpp"
 # include <string>
 
-class FragTrap : public virtual ClapTrap {
-  protected:
-    const int kDefaultHitpoints;
-    const int kDefaultEnergy_points;
-    const int kDefaultAttack_damage;
+class FragTrap : virtual public ClapTrap {
+ protected:
+    static const unsigned int kDefaultHitpoints = 100;
+    static const unsigned int kDefaultEnergy_points = 100;
+    static const unsigned int kDefaultAttack_damage = 30;
 
  public:
     FragTrap(void);
-    FragTrap(std::string name);
+    explicit FragTrap(std::string name);
     FragTrap(const FragTrap& other);
-    virtual ~FragTrap(void);
+    ~FragTrap(void);
     FragTrap& operator=(const FragTrap& other);
-    virtual void attack(std::string const &target);
-    virtual void takeDamage(unsigned int amount);
-    virtual void beRepaired(unsigned int amount);
     void highFivesGuys(void);
 };
 
