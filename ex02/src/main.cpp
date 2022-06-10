@@ -36,10 +36,34 @@ void GuardGateTest(void) {
     s.highFivesGuys();
 }
 
+void HitpointTest(void) {
+    HEADER();
+
+    FragTrap s("hoge");
+    s.takeDamage(99);
+    s.attack("fuga");
+    s.takeDamage(1);
+    s.attack("fuga");
+}
+
+
+void EnergypointTest(void) {
+    HEADER();
+
+    FragTrap s("hoge");
+    for (int i = 0; i < 100; i++) {
+        s.beRepaired(100);
+    }
+    s.beRepaired(100);
+}
+
+
 int main(void) {
     CanonicalTest();
     ConstructorAndDestructorTest();
     AttackAndBeRepairedAndTakeDamageTest();
     GuardGateTest();
+    HitpointTest();
+    EnergypointTest();
     return 0;
 }

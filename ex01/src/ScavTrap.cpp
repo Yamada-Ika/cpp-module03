@@ -38,12 +38,12 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
 
 void ScavTrap::attack(std::string const &target) {
     if (isEnergyEmpty() || isDead()) {
-        std::cout << "ScavTrap " + this->Name_ + " cannot do anything!" << std::endl;
+        std::cout << "ScavTrap " + Name_ + " cannot do anything!" << std::endl;
         return;
     }
     Energy_points_--;
-    std::cout << "ScavTrap " + this->Name_ + " attack " + target + ", causing ";
-    std::cout << this->Attack_damage_ << " points of damage!" << std::endl;
+    std::cout << "ScavTrap " + Name_ + " attack " + target + ", causing ";
+    std::cout << Attack_damage_ << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate(void) {

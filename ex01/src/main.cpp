@@ -5,14 +5,6 @@
 
 #define HEADER() std::cout << "\033[32mSTART : " << __func__ << "\033[0m" << std::endl
 
-void NormalTest(void) {
-    HEADER();
-    ScavTrap a("hoge");
-
-    a.attack("fuga");
-    a.guardGate();
-}
-
 void CanonicalTest(void) {
     HEADER();
 
@@ -51,12 +43,34 @@ void GuardGateTest(void) {
     s.guardGate();
 }
 
+void HitpointTest(void) {
+    HEADER();
+
+    ScavTrap s("hoge");
+    s.takeDamage(99);
+    s.attack("fuga");
+    s.takeDamage(1);
+    s.attack("fuga");
+}
+
+
+void EnergypointTest(void) {
+    HEADER();
+
+    ScavTrap s("hoge");
+    for (int i = 0; i < 50; i++) {
+        s.beRepaired(100);
+    }
+    s.beRepaired(100);
+}
+
 int main(void) {
-    NormalTest();
     CanonicalTest();
     ConstructorAndDestructorTest();
     AttackMessageTest();
     BeRepairedAndTakeDamageTest();
     GuardGateTest();
+    HitpointTest();
+    EnergypointTest();
     return 0;
 }

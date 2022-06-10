@@ -9,11 +9,11 @@ void  NoHitpointTest(void) {
     ClapTrap a("hoge");
 
     a.attack("fuga");
-    a.takeDamage(1000);
-    a.beRepaired(10);
+    a.takeDamage(9);
+    a.attack("hoge");
+    a.takeDamage(1);
     a.attack("hoge");
 }
-
 
 void  NoEnergyTest(void) {
     HEADER();
@@ -38,7 +38,7 @@ void  CanonicalTest(void) {
     c = b;
 }
 
-int main( void ) {
+int main(void) {
     NoHitpointTest();
     NoEnergyTest();
     CanonicalTest();
